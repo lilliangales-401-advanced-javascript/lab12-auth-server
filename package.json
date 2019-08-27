@@ -31,6 +31,7 @@
     "swagger-ui-express": "^4.0.2"
   },
   "devDependencies": {
+    "eslint": "^6.2.2",
     "express-swagger-generator": "^1.1.15",
     "jest": "^24.9.0",
     "jsdoc": "^3.6.3"
