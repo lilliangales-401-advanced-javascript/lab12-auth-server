@@ -3,7 +3,7 @@
 const superagent = require('superagent');
 const Users = require('../users-model.js');
 
-const API = 'https://lab11-auth-server.herokuapp.com/';
+const API = 'https://lab12-auth.herokuapp.com/';
 const git = 'https://github.com/login/oauth/access_token';
 const SERVICE = 'https://api.github.com/user'; 
 
