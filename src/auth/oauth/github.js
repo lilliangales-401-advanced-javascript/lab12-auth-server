@@ -7,6 +7,10 @@ const API = 'http://localhost:8080';
 const git = 'https://github.com/login/oauth/access_token';
 const SERVICE = 'https://api.github.com/user';
 
+/**
+ * @param {object} request 
+ * authorizes post from OAuth GitHub
+ */
 let authorize = (request) => {
 
   console.log('(1)', request.query.code);
@@ -28,7 +32,7 @@ let authorize = (request) => {
     .then(token => {
       console.log(SERVICE, token);
       return superagent.get(SERVICE)
-        .set('Authorization', `token ${token}`) //fix the token
+        .set('Authorization', `token ${token}`)
         .then( response => {
           let user = response.body;
           console.log('(3)', user);

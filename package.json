@@ -8,7 +8,9 @@
     "watch": "nodemon index.js",
     "test-watch": "jest --watchAll",
     "test": "jest",
-    "startDB" : "mkdir -p ./.db && mongod --dbpath ./.db"
+    "startDB" : "mkdir -p ./.db && mongod --dbpath ./.db",
+    "lint": "eslint \"**/*.js\"",
+    "jsdoc": "jsdoc -c ./docs/config/jsdoc.config.json"
   },
   "jest": {
     "testEnvironment": "node"
