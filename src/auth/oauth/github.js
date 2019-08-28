@@ -3,7 +3,7 @@
 const superagent = require('superagent');
 const Users = require('../users-model.js');
 
-const API = 'http://localhost:3000';
+const API = 'http://localhost:8080';
 const git = 'https://github.com/login/oauth/access_token';
 const SERVICE = 'https://api.github.com/user'; 
 
@@ -23,7 +23,7 @@ let authorize = (request) => {
     })
     .then( response => {
       let access_token = response.body.access_token;
-      console.log('(2)', access_token); //TODO: REMOVE THIS CONSOLE.LOG IN FUTURE
+      console.log('(2)', response.body, access_token); //TODO: REMOVE THIS CONSOLE.LOG IN FUTURE
       return access_token;
     })
     .then(token => {
