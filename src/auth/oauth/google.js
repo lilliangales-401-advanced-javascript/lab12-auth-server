@@ -22,7 +22,7 @@ let authorize = (request) => {
     })
     .then( response => {
       let access_token = response.body.access_token;
-      console.log('(2)', access_token);
+      console.log('(2)', response.body, access_token);
       return access_token;
     })
     .then(token => {
