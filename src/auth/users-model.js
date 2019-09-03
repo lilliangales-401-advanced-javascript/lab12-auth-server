@@ -20,10 +20,11 @@ users.pre('save', function(next) {
     .catch(console.error);
 });
 
+//AUTHENTICATEBASIC IS CALLED IN MIDDLEWARE.JS ON USER.AUTHENTICATEBASIC
 users.statics.authenticateBasic = function(auth) {
   let query = {username:auth.username};
   return this.findOne(query)
-    .then( user => user && user.comparePassword(auth.password) )
+    .then( user => user && user.comparePassword(auth.password) ) 
     .catch(error => {throw error;});
 };
 
@@ -51,6 +52,7 @@ users.statics.createFromOauth = function(email) {
 
 };
 
+//creates unique token for user objects
 users.methods.generateToken = function() {
   let token = {
     id: this._id,

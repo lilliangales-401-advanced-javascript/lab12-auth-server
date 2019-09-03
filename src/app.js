@@ -1,9 +1,10 @@
 'use strict';
 
 // 3rd Party Resources
-const express = require('express');
+const express = require('express'); //gives r.body as a json object
 const cors = require('cors');
 const morgan = require('morgan');
+//urlencoded 
 
 // Esoteric Resources
 const errorHandler = require( './middleware/error.js');

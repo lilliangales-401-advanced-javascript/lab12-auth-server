@@ -15,6 +15,7 @@ const oauth = require('./oauth/github.js'); //github
  * @param {function} next
  * @returns {object} 200 -  new User and generateToken()
  */
+//new user 
 authRouter.post('/signup', (req, res, next) => {
   let user = new User(req.body);
   user.save()
@@ -35,7 +36,10 @@ authRouter.post('/signup', (req, res, next) => {
  * @param {function} next
  * @returns {object} 200 -  authentication and token check
  */
-authRouter.post('/signin', auth, (req, res, next) => {
+
+ //which functions have to run/be hit before this activates?
+ authRouter.post('/signin', auth, (req, res, next) => {
+  //token has been generated and correct information will now hit this /signin route
   res.cookie('auth', req.token);
   res.send(req.token);
 });
