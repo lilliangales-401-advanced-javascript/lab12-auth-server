@@ -18,6 +18,7 @@ module.exports = (req, res, next) => {
         return _authBasic(authString); //
       default:
         return _authError(); //anything other than basic will hit this _authError
+
     }
 
   } catch(e) {

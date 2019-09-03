@@ -1,7 +1,7 @@
 {
   "source": {
     "include" : ["./"],
-    "exclude" : ["./node_modules"]
+    "exclude" : ["./node_modules", "./__tests__"]
   },
   "opts": {
     "destination": "./docs/",

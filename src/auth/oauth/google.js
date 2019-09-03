@@ -3,36 +3,32 @@
 const superagent = require('superagent');
 const Users = require('../users-model.js');
 
-const API = 'https://lab12-auth.herokuapp.com/';
-const git = 'https://github.com/login/oauth/access_token';
-const SERVICE = 'https://api.github.com/user';
+const API = 'http://localhost:3000';
+const GTS = 'https://www.googleapis.com/oauth2/v4/token';
+const SERVICE = 'https://www.googleapis.com/plus/v1/people/me/openIdConnect';
 
-/**
- * @param {object} request 
- * authorizes post from OAuth GitHub
- */
 let authorize = (request) => {
-
+  
   console.log('(1)', request.query.code);
-
-  return superagent.post(git)
+  
+  return superagent.post(GTS)
     .type('form')
     .send({
-      code: request.query.code, //the code we get back
-      client_id: process.env.CLIENT_ID,
-      client_secret: process.env.SECRET,
+      code: request.query.code,
+      client_id: process.env.GOOGLE_CLIENT_ID,
+      client_secret: process.env.GOOGLE_CLIENT_SECRET,
       redirect_uri: `${API}/oauth`,
-      //grant_type: 'authorization_code', //standard auth code
+      grant_type: 'authorization_code',
     })
     .then( response => {
       let access_token = response.body.access_token;
-      console.log('(2)', response.body, access_token); //TODO: REMOVE THIS CONSOLE.LOG IN FUTURE
+      console.log('(2)', response.body, access_token);
       return access_token;
     })
     .then(token => {
       console.log(SERVICE, token);
-      return superagent.get(SERVICE) //using token to communicate back with github 
-        .set('Authorization', `token ${token}`)
+      return superagent.get(SERVICE)
+        .set('Authorization', `Bearer ${token}`)
         .then( response => {
           let user = response.body;
           console.log('(3)', user);
@@ -40,7 +36,7 @@ let authorize = (request) => {
         });
     })
     .then( oauthUser => {
-      console.log('(4) Create Our Account', oauthUser.email);
+      console.log('(4) Create Our Account');
       return Users.createFromOauth(oauthUser.email);
     })
     .then( actualUser => {
