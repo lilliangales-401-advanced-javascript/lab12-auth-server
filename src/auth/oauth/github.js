@@ -36,7 +36,7 @@ let authorize = (request) => {
     })
     .then(token => {
       console.log(SERVICE, token);
-      return superagent.get(SERVICE)
+      return superagent.get(SERVICE) //using token to communicate back with github 
         .set('Authorization', `token ${token}`)
         .then( response => {
           let user = response.body;
