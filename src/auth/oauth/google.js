@@ -40,7 +40,7 @@ let authorize = (request) => {
       return Users.createFromOauth(oauthUser.email);
     })
     .then( actualUser => {
-      return actualUser.generateToken(); 
+      return actualUser.generateToken();
     })
     .catch( error => error );
 };
